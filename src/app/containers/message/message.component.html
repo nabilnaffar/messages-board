@@ -1,4 +1,4 @@
-<div class="title">Title</div>
-<div class="from">From: nabil naffar</div>
-<div class="date">30.12.2012 09:38</div>
-<div class="content">sdafdsfasdfa</div>
+<div class="title">{{(selectedMessage$ | async)?.title}}</div>
+<div class="from">From: {{(selectedMessage$ | async)?.from}}</div>
+<div class="date">{{(selectedMessage$ | async)?.date | date:'yMdjm'}}</div>
+<div class="content">{{(selectedMessage$ | async)?.content}}</div>

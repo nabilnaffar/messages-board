@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {Message}from '../../models/message';
+import { Message }from '../../models/IMessage';
+import { MessagesActions } from '../../actions/messages.actions';
 
 @Component({
   selector: 'app-new-message',
@@ -10,7 +11,7 @@ export class NewMessageComponent implements OnInit {
   @Output() newMessage:EventEmitter<any> = new EventEmitter();
   message: Message;
   
-  constructor() { }
+  constructor(private messagesActions:MessagesActions) { }
 
   ngOnInit() {
     this.message = new Message();
@@ -19,7 +20,8 @@ export class NewMessageComponent implements OnInit {
   add(){
     let now = new Date();
     this.message.date = now.toString();
-    console.log('Fire action here!');
+    this.messagesActions.addMessage(this.message);
+    this.message = new Message();
   }
-
+  
 }

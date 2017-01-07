@@ -1,1 +1,1 @@
-<label>New messages</label><app-badge [count]="5"></app-badge>
+<label>{{title}}</label><app-badge [hidden]="unread === 0" [title]="'Unread:'" [count]="unread"></app-badge>

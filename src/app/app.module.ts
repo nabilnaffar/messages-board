@@ -1,16 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { MessagesBoardComponent } from './containers/messages-board/messages-board.component';
-import { SidebarComponent } from './containers/sidebar/sidebar.component';
-import { NewMessageComponent } from './containers/new-message/new-message.component';
-import { MessageRowComponent } from './ui/message-row/message-row.component';
-import { SidebarOptionComponent } from './ui/sidebar-option/sidebar-option.component';
-import { BadgeComponent } from './ui/sidebar-option/badge/badge.component';
-import { MessageComponent } from './containers/message/message.component';
+import { MessagesBoardComponent, MessageComponent, NewMessageComponent, SidebarComponent } from './containers';
+import { MessageRowComponent, BadgeComponent, SidebarOptionComponent } from './ui';
 import { ResizeDirective } from './directives/resize.directive';
+
+import  { NgReduxModule, NgRedux } from 'ng2-redux';
+import { rootReducer , INITIAL_STATE} from './store/root.reducer';
+import { IAppState } from './models/IAppState';
+import { MessagesActions } from './actions/messages.actions';
+
+import '../rxjs-addons';
+
 
 @NgModule({
   declarations: [
@@ -26,9 +30,15 @@ import { ResizeDirective } from './directives/resize.directive';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    FormsModule,
+    NgReduxModule
   ],
-  providers: [],
+  providers: [MessagesActions],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(ngRedux:NgRedux<IAppState>){
+    ngRedux.configureStore(rootReducer, INITIAL_STATE, []);
+  }
+}

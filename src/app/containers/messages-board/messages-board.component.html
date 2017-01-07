@@ -1,8 +1,2 @@
 <h4>Messages Board</h4>
-<app-message-row></app-message-row>
-<app-message-row></app-message-row>
-<app-message-row></app-message-row>
-<app-message-row></app-message-row>
-<app-message-row></app-message-row>
-<app-message-row></app-message-row>
-<app-message-row></app-message-row>
+<app-message-row *ngFor="let message of messages$ | async" [message]="message" (click)="selectMessage(message.id)"></app-message-row>

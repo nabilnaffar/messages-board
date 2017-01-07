@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Message } from '../../models/IMessage';
 
 @Component({
   selector: 'app-message-row',
   templateUrl: './message-row.component.html',
   styleUrls: ['./message-row.component.less']
 })
-export class MessageRowComponent implements OnInit {
-
+export class MessageRowComponent {
+  @Input() message:Message;
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

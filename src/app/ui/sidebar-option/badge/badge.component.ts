@@ -7,5 +7,5 @@ import { Component , Input} from '@angular/core';
 })
 export class BadgeComponent {
   @Input() count:number;
-  constructor() { }
+  @Input() title:string;
 }

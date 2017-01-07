@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="from">Nabil Naffar</div>
-  <div class="title">For sajdfjalsk fas dflkshda l</div>
-  <div class="date">2/12/2016 6:22</div>
+<div class="container" [ngClass]="{read: message.isRead}">
+  <div class="from">{{message.from}}</div>
+  <div class="title">{{message.content}}</div>
+  <div class="date">{{message.date | date:'yMMMd'}}</div>
 </div>
