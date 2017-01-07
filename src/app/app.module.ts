@@ -8,10 +8,11 @@ import { MessagesBoardComponent, MessageComponent, NewMessageComponent, SidebarC
 import { MessageRowComponent, BadgeComponent, SidebarOptionComponent } from './ui';
 import { ResizeDirective } from './directives/resize.directive';
 
-import  { NgReduxModule, NgRedux } from 'ng2-redux';
+import  { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
 import { rootReducer , INITIAL_STATE} from './store/root.reducer';
 import { IAppState } from './models/IAppState';
 import { MessagesActions } from './actions/messages.actions';
+// import createLogger from 'redux-logger';
 
 import '../rxjs-addons';
 
@@ -38,7 +39,9 @@ import '../rxjs-addons';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(ngRedux:NgRedux<IAppState>){
-    ngRedux.configureStore(rootReducer, INITIAL_STATE, []);
+  constructor(ngRedux:NgRedux<IAppState>, devTools: DevToolsExtension){
+
+
+    ngRedux.configureStore(rootReducer, INITIAL_STATE, [], [devTools.enhancer()]);
   }
 }

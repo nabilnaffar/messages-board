@@ -1,5 +1,8 @@
 {
   "globalDependencies": {
     "redux": "registry:dt/redux#3.5.2+20160703092728"
+  },
+  "dependencies": {
+    "redux-logger": "registry:dt/redux-logger#2.6.0+20160726205300"
   }
 }
