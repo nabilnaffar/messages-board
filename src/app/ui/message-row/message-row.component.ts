@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Message } from '../../models/IMessage';
 
 @Component({
@@ -8,5 +8,11 @@ import { Message } from '../../models/IMessage';
 })
 export class MessageRowComponent {
   @Input() message:Message;
+  @Output() delete:EventEmitter<any> = new EventEmitter();
+
   constructor() { }
+
+  onDelete(){
+    this.delete.emit(this.message.id);
+  }
 }

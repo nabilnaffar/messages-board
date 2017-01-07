@@ -17,4 +17,8 @@ export class MessagesBoardComponent {
   selectMessage(messageId){
     this.messagesActions.selectMessage(messageId);
   }
+  
+  onMessageDelete(messageId){
+    this.messagesActions.deleteMessage(messageId);
+  }
 }

@@ -1,4 +1,5 @@
-<div class="title">{{(selectedMessage$ | async)?.title}}</div>
-<div class="from">From: {{(selectedMessage$ | async)?.from}}</div>
-<div class="date">{{(selectedMessage$ | async)?.date | date:'yMdjm'}}</div>
-<div class="content">{{(selectedMessage$ | async)?.content}}</div>
+<div class="title">{{selectedMessage?.title}}</div>
+<div class="from">{{selectedMessage?.from}}</div>
+<div class="date">{{selectedMessage?.date | date:'yMdjm'}}</div>
+<div class="content">{{selectedMessage?.content}}</div>
+<button type="button" [hidden]="!selectedMessage" class="delete" (click)="delete()">Delete</button>
