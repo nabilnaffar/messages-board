@@ -15,7 +15,7 @@ import { MessagesActions } from './actions/messages.actions';
 // import createLogger from 'redux-logger';
 
 import '../rxjs-addons';
-
+import {Observable, Observer, Subject} from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -43,5 +43,10 @@ export class AppModule {
 
 
     ngRedux.configureStore(rootReducer, INITIAL_STATE, [], [devTools.enhancer()]);
+
+    var username = prompt("Please enter your username");
+    if (username != null) {
+        //https://medium.com/@lwojciechowski/websockets-with-angular2-and-rxjs-8b6c5be02fac#.7x8djdpfx
+    }
   }
 }
