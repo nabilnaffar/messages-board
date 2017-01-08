@@ -25,6 +25,9 @@ export function rootReducer(state:IAppState = INITIAL_STATE, action:{type:string
         case MessagesActions.DELETE_MESSAGE:
             let filteredMessages = state.messages.filter(message => message.id !== action.payload);  
             return Object.assign({}, state, {messages: filteredMessages});
+
+        case AppActions.LOGIN:
+            return Object.assign({}, state, {username: action.payload});
             
         default:
             return state;

@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
 import { AppActions } from '../actions';
 import { Subject, Observer, Observable } from 'rxjs';
-
-const SERVER_URL:string = 'ws://localhost:3000';
+//https://github.com/PeterKassenaar/ng2-websockets/blob/master/client/app/create-message/create-message.component.tsNn
 
 @Injectable()
-export class LoginService {
+export class WebsocketService {
   private socket: Subject<MessageEvent>;
 
   constructor() {}
 
-  connect(username){
+  connect(url){
       if(!this.socket) {
-        this.socket = this.create(username);
+        this.socket = this.create(url);
         }
         return this.socket;
   }
 
-  create(username:string):Subject<MessageEvent>{
-      let ws = new WebSocket(SERVER_URL);
+  create(url:string):Subject<MessageEvent>{
+      let ws = new WebSocket(url);
         let observable = Observable.create(
             (obs: Observer<MessageEvent>) => {
                 ws.onmessage = obs.next.bind(obs);
@@ -35,16 +34,5 @@ export class LoginService {
             },
         };
         return Subject.create(observer, observable);
-  }
-
-  sendMessage(message){
-
-  }
-
-  middleware = store => next => action => {
-     if(action.type === AppActions.LOGIN){
-         this.connect(action.payload);
-     }
-    return next(action);
   }
 }

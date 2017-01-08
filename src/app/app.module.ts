@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
 import { MessagesBoardComponent, MessageComponent, NewMessageComponent, SidebarComponent, LoginComponent, MainComponent } from './containers';
 import { MessageRowComponent, BadgeComponent, SidebarOptionComponent } from './ui';
 // import { ResizeDirective } from './directives/resize.directive';
-import { LoginService } from './store/login.middleware';
+import { WebsocketService  } from './services/websocket.service';
+import { MessagesService } from './services/messages.service';
 
 import  { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
 import {rootReducer,  INITIAL_STATE} from './store/root.reducer';
@@ -43,15 +44,13 @@ import {Observable, Observer, Subject} from 'rxjs';
     NgReduxModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [MessagesActions, AppActions, LoginService, AuthGuard],
+  providers: [WebsocketService, MessagesService, MessagesActions, AppActions, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(ngRedux:NgRedux<IAppState>, devTools: DevToolsExtension, loginService: LoginService){
+  constructor(ngRedux:NgRedux<IAppState>, devTools: DevToolsExtension){
     const MIDDLEWARES = [
-      logger(),
-
-      loginService.middleware
+      logger()
       ];
     const ENHANCERS = [
       devTools.enhancer()

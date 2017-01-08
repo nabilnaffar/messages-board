@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../models/IAppState';
 import { Message } from '../models/IMessage';
+import { MessagesService } from '../services/messages.service';
 
 @Injectable()
 export class MessagesActions{
