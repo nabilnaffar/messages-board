@@ -1,7 +1,8 @@
-import {MessagesActions} from '../actions/messages.actions';
+import {MessagesActions, AppActions} from '../actions';
 import {IAppState} from '../models/IAppState';
 
 export const INITIAL_STATE:IAppState = {
+    username: null,
     selectedMessageId: 0,
     messages: []
 }
@@ -24,7 +25,7 @@ export function rootReducer(state:IAppState = INITIAL_STATE, action:{type:string
         case MessagesActions.DELETE_MESSAGE:
             let filteredMessages = state.messages.filter(message => message.id !== action.payload);  
             return Object.assign({}, state, {messages: filteredMessages});
-
+            
         default:
             return state;
     }

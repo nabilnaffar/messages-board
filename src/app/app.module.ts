@@ -1,17 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
+import { AuthGuard } from './services/auth.guard';
+
 
 import { AppComponent } from './app.component';
-import { MessagesBoardComponent, MessageComponent, NewMessageComponent, SidebarComponent } from './containers';
+import { MessagesBoardComponent, MessageComponent, NewMessageComponent, SidebarComponent, LoginComponent, MainComponent } from './containers';
 import { MessageRowComponent, BadgeComponent, SidebarOptionComponent } from './ui';
-import { ResizeDirective } from './directives/resize.directive';
+// import { ResizeDirective } from './directives/resize.directive';
+import { LoginService } from './store/login.middleware';
 
 import  { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
-import { rootReducer , INITIAL_STATE} from './store/root.reducer';
+import {rootReducer,  INITIAL_STATE} from './store/root.reducer';
 import { IAppState } from './models/IAppState';
-import { MessagesActions } from './actions/messages.actions';
+import { MessagesActions, AppActions } from './actions';
 // import createLogger from 'redux-logger';
 
 import '../rxjs-addons';
@@ -27,26 +32,27 @@ import {Observable, Observer, Subject} from 'rxjs';
     SidebarOptionComponent,
     BadgeComponent,
     MessageComponent,
-    ResizeDirective
+    LoginComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    NgReduxModule
+    NgReduxModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [MessagesActions],
+  providers: [MessagesActions, AppActions, LoginService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(ngRedux:NgRedux<IAppState>, devTools: DevToolsExtension){
-
-
-    ngRedux.configureStore(rootReducer, INITIAL_STATE, [], [devTools.enhancer()]);
-
-    var username = prompt("Please enter your username");
-    if (username != null) {
-        //https://medium.com/@lwojciechowski/websockets-with-angular2-and-rxjs-8b6c5be02fac#.7x8djdpfx
-    }
+  constructor(ngRedux:NgRedux<IAppState>, devTools: DevToolsExtension, loginService: LoginService){
+    const MIDDLEWARES = [
+      loginService.middleware
+      ];
+    const ENHANCERS = [
+      devTools.enhancer()
+      ];
+    ngRedux.configureStore(rootReducer, INITIAL_STATE, MIDDLEWARES, ENHANCERS);
   }
 }
