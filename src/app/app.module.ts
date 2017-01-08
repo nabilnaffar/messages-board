@@ -17,7 +17,8 @@ import  { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
 import {rootReducer,  INITIAL_STATE} from './store/root.reducer';
 import { IAppState } from './models/IAppState';
 import { MessagesActions, AppActions } from './actions';
-// import createLogger from 'redux-logger';
+let logger  = require('redux-logger');
+// import ReduxThunk from 'redux-thunk';
 
 import '../rxjs-addons';
 import {Observable, Observer, Subject} from 'rxjs';
@@ -48,6 +49,8 @@ import {Observable, Observer, Subject} from 'rxjs';
 export class AppModule { 
   constructor(ngRedux:NgRedux<IAppState>, devTools: DevToolsExtension, loginService: LoginService){
     const MIDDLEWARES = [
+      logger(),
+
       loginService.middleware
       ];
     const ENHANCERS = [

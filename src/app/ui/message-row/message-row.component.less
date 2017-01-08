@@ -1,18 +1,23 @@
+
 .container{
-    border: 2px solid #333;
+    //border: 2px solid #333;
     height: 70px;
     line-height: 70px;
     width: 100%;
     padding: 4px;
-    background-color: #536DFE;
-    color: #fefefe;
+    background-color: white;
+    font-weight: bold;
+    color: black;
     display: flex;
     cursor: pointer;
     .from{
+        color: #F44336;
         flex: 0 0 200px;
-        }
+    }
     .title{
-        flex: 1 1 auto;}
+        color: #F44336;
+        flex: 1 1 auto;
+    }
     .date{
         flex: 0 0 150px;
     }
@@ -20,10 +25,15 @@
         vertical-align: middle;
     }
     &:hover{
-        background-color: #512DA8;
+        background-color: #EEE;
     }
 
     &.read{
-        opacity: 0.7;
+        background-color: #ccc;
+        *{
+            font-weight: normal;
+            color: #222;
+        }
+        
     }
 }

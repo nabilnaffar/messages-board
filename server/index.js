@@ -27,7 +27,7 @@ var ws = require("nodejs-websocket")
 var clients = {};
 
 var server = ws.createServer(function (conn) {
-    console.log("New connection", conn)
+    console.log("New connection")
     conn.on("sendMsg", function (str) {
         //do some logic here...
     })

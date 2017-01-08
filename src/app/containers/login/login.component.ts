@@ -20,13 +20,12 @@ export class LoginComponent implements OnInit {
       if(username){
         //navigate to main app
         console.warn(username);
+        this.router.navigate(['']);
       }
     });  
    }
 
   login(username){
     this.appActions.login(username);
-    //then...
-    this.router.navigate(['']);
   }
 }
