@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppActions } from '../actions';
 import { Subject, Observer, Observable } from 'rxjs';
-//https://github.com/PeterKassenaar/ng2-websockets/blob/master/client/app/create-message/create-message.component.tsNn
+//source: https://github.com/PeterKassenaar/ng2-websockets/blob/master/client/app/create-message/create-message.component.tsNn
 
 @Injectable()
 export class WebsocketService {

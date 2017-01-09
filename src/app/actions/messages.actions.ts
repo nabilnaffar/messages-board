@@ -30,4 +30,7 @@ export class MessagesActions{
             payload: messageId
         })
     }
+    sendMessage(message:Message):void{
+        //this.messagesService.messages.next({type: 'MSG', payload: message});
+    }
 }
